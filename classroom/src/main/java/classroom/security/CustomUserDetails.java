@@ -1,6 +1,6 @@
 package classroom.security;
 
-import classroom.User;
+import classroom.entity.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
