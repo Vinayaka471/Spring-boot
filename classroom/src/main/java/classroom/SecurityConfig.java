@@ -7,7 +7,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -20,7 +20,7 @@ public class SecurityConfig {
         this.customUserDetailsService = customUserDetailsService;
     }
 
-    // 🔹 Authentication Provider (connects with our service)
+
     @Bean
     public DaoAuthenticationProvider authProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
@@ -29,19 +29,17 @@ public class SecurityConfig {
         return authProvider;
     }
 
-    // 🔹 Authentication Manager
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
     }
 
-    // 🔹 Password encoder (NoOp since you are using {noop}passwords)
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return NoOpPasswordEncoder.getInstance(); // only for testing
+        return new BCryptPasswordEncoder(); 
     }
 
-    // 🔹 Security filter chain
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())
@@ -50,10 +48,10 @@ public class SecurityConfig {
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
-                        .loginPage("/") // custom login page
-                        .loginProcessingUrl("/login") // form action
-                        .usernameParameter("userEmail") // must match JSP input name
-                        .passwordParameter("userPassword")
+                        .loginPage("/")
+                        .loginProcessingUrl("/login")
+                        .usernameParameter("userEmail") 
+                        .passwordParameter("userPassword") 
                         .defaultSuccessUrl("/welcome", true)
                         .failureUrl("/?error")
                         .permitAll()
