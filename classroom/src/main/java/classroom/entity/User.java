@@ -1,6 +1,5 @@
 package classroom.entity;
 
-
 import jakarta.persistence.*;
 import java.util.Set;
 
@@ -8,34 +7,33 @@ import java.util.Set;
 @Table(name = "users")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // auto increment
-    private Integer id;
+    @Column(name = "user_id")
+    private Integer userId;
 
-    @Column(unique = true, nullable = false)
-    private String username;
+    @Column(name = "user_email", unique = true, nullable = false)
+    private String userEmail;
 
-    @Column(nullable = false)
-    private String userpassword;
+    @Column(name = "user_password", nullable = false)
+    private String userPassword;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
-        name = "user_role_mapping",
+        name = "user_roles_mapping",
         joinColumns = @JoinColumn(name = "user_id"),
         inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private Set<Role> roles;
 
-    // Getters and setters
-    public Integer getId() { return id; }
-    public void setId(Integer id) { this.id = id; }
+    // getters and setters
+    public Integer getUserId() { return userId; }
+    public void setUserId(Integer userId) { this.userId = userId; }
 
-    public String getUsername() { return username; }
-    public void setUsername(String username) { this.username = username; }
+    public String getUserEmail() { return userEmail; }
+    public void setUserEmail(String userEmail) { this.userEmail = userEmail; }
 
-    public String getUserpassword() { return userpassword; }
-    public void setUserpassword(String userpassword) { this.userpassword = userpassword; }
+    public String getUserPassword() { return userPassword; }
+    public void setUserPassword(String userPassword) { this.userPassword = userPassword; }
 
     public Set<Role> getRoles() { return roles; }
     public void setRoles(Set<Role> roles) { this.roles = roles; }
 }
-

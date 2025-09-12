@@ -1,41 +1,50 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Accounts Portal - Login</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Login</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; }
+        .login-container {
+            width: 300px;
+            margin: 100px auto;
+            padding: 30px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            border-radius: 8px;
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover { background-color: #0056b3; }
+        .error { color: red; text-align: center; }
+    </style>
 </head>
-<body class="bg-light">
-    <div class="container d-flex justify-content-center align-items-center vh-100">
-        <div class="card shadow-lg p-4 rounded-3" style="width: 400px;">
-            <h3 class="text-center mb-4">Login</h3>
-            <form action="${pageContext.request.contextPath}/login" method="post">
-                <div class="mb-3">
-                    <label class="form-label">Email / Username</label>
-                    <input type="text" class="form-control" name="userEmail" required>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Password</label>
-                    <input type="password" class="form-control" name="userPassword" required>
-                </div>
-
-                <div class="mb-3 form-check">
-                    <input type="checkbox" class="form-check-input" id="rememberMe" name="rememberMe">
-                    <label class="form-check-label" for="rememberMe">Remember me</label>
-                </div>
-
-                <button type="submit" class="btn btn-primary w-100">Login</button>
-
-                <% if (request.getParameter("error") != null) { %>
-                    <div class="alert alert-danger mt-2">Invalid username or password</div>
-                <% } %>
-            </form>
-        </div>
-    </div>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<body>
+<div class="login-container">
+    <h2>Login</h2>
+    <form action="login" method="post">
+        <label>Email:</label>
+        <input type="text" name="userEmail" required /><br/>
+        <label>Password:</label>
+        <input type="password" name="userPassword" required /><br/>
+        <button type="submit">Login</button>
+    </form>
+    <c:if test="${not empty param.error}">
+        <p class="error">Invalid email or password</p>
+    </c:if>
+</div>
 </body>
 </html>
