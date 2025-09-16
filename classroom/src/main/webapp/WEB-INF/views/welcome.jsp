@@ -17,8 +17,10 @@
                 String username = auth.getName();
             %>
             <h3>Welcome, <%= username %> 🎉</h3>
+            <p>You have successfully logged in.</p>
         </div>
 
+        <a href="${pageContext.request.contextPath}/dashboard" class="btn btn-primary">Go to Dashboard</a>
         <a href="${pageContext.request.contextPath}/logout" class="btn btn-danger">Logout</a>
     </div>
 
