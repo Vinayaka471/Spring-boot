@@ -1,6 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<div class="navbar navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
     <div class="container-fluid">
-        <a class="navbar-brand" href="${pageContext.request.contextPath}/dashboard">My Classroom</a>
+        <span class="navbar-brand">University Faculty</span>
+        <div class="d-flex">
+            <span class="me-3">User</span>
+            <a href="${pageContext.request.contextPath}/logout" class="btn btn-outline-danger btn-sm">Logout</a>
+        </div>
     </div>
-</div>
+</nav>

@@ -22,5 +22,8 @@
         <a href="${pageContext.request.contextPath}/dashboard" class="btn btn-primary">Go to Dashboard</a>
         <a href="${pageContext.request.contextPath}/logout" class="btn btn-danger">Logout</a>
     </div>
+	
+	<%@ include file="styling.jsp" %>
+
 </body>
 </html>
