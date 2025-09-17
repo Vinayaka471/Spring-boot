@@ -6,8 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Welcome</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <%@ include file="styling.jsp" %> 
 </head>
 <body class="bg-light">
     <div class="container mt-5">
@@ -23,8 +22,5 @@
         <a href="${pageContext.request.contextPath}/dashboard" class="btn btn-primary">Go to Dashboard</a>
         <a href="${pageContext.request.contextPath}/logout" class="btn btn-danger">Logout</a>
     </div>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
